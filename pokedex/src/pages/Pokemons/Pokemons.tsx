@@ -6,6 +6,7 @@ import Miau1 from '../../assets/miau1.png'
 import { useState, useEffect } from 'react';
 import { IGetAllPokemonsReturn, PokemonService } from '../../services/pokemonservice';
 import Card from '../../components/Card/Card';
+import { MdCatchingPokemon } from 'react-icons/md';
 
 function Pokemons() {
 
@@ -39,11 +40,11 @@ function Pokemons() {
           sx={{backgroundColor: "#ffffff15", border: "none", color: "#FAFDFC", ':hover': {color: 'white', backgroundColor: '#fafdfc2f'}, }}
           freeSolo
         />
-        <p>POKÉDEX</p>
+        <p><MdCatchingPokemon /> POKÉDEX</p>
       </div>
       <div className="cards">
-      {pokemons.map(props => 
-        <Card pokemon={props}/>
+        {pokemons.map(props => 
+          <Card pokemon={props}/>
         )}
       </div>
     </div>

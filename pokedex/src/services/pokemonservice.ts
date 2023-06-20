@@ -35,9 +35,11 @@ export interface IGetPokemonResponse {
     types: {
         slot: number;
         type: {
-            name: string;
+            name: 
+                "fighting" | "normal" | "flying" | "poison" | "rock" | "bug" | "ghost" | "steel" | "fire" | "water" | "grass" |
+                "electric" | "psychic" | "ice" | "dragon" | "dark" | "fairy" | "unknown" | "ground" | "shadow";
             url:string;
-        }[]
+        }
     }[];
     weight: number;
 }
@@ -58,7 +60,7 @@ export interface IGetPokemonEvolutions {
     chain: {
         "evolves_to": {
             species: {
-                name: string | null;
+                name?: string;
             }
         }[]
     }
@@ -90,7 +92,16 @@ export class PokemonService {
             }
         })
     }
-    static async getPokemonDetails() {
-
+    static async getPokemonStats(id: number) {
+        const response = await api.get<IGetPokemonResponse>(`/pokemon/${id}`);
+        return response.data
+    }    
+    static async getPokemonDetails(id: number) {
+        const response = await api.get<IGetPokemonDetails>(`/pokemon-species/${id}`);
+        return response.data
+    }
+    static async getPokemonEvolutions(id: number) {
+        const response = await api.get<IGetPokemonEvolutions>(`/evolution-chain/${id}`);
+        return response.data
     }
 }
